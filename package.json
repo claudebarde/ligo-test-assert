@@ -4,7 +4,8 @@
   "description": "Assertion library for the Ligo test framework",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec ligo run test ./tests.mligo"
+    "test": "nodemon --exec ligo run test ./tests.mligo",
+    "docker-update": "docker pull ligolang/ligo:next"
   },
   "keywords": [
     "Tezos",

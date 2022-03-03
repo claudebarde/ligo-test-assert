@@ -135,25 +135,20 @@ let test =
         LIST MODULE TESTS
     *)
     let _ = FORMAT.add_title "LIST MODULE TESTS" in
-    // is_empty
+    // to_be_empty
     let list: int list = [] in
-    let _ = ASSERT.LIST.is_empty list in
+    let _ = ASSERT.LIST.to_be_empty list in
+    let list: int list = [1;2;3;4] in
+    let _ = ASSERT.LIST.NOT.to_be_empty list in
     // has_size
     let list: int list = [1; 2; 3; 4] in
-    let _ = ASSERT.LIST.has_size list 4n in
-    // has_head
-    let _ = ASSERT.LIST.has_head list 1 in
-    // has_value
-    let _ = ASSERT.LIST.has_value list 3 in
-
-    (* let list: int list = [] in
-    let _ = ASSERT.LIST.is_empty_curried true list in
-    let list: int list = [1;2;3;4] in
-    let _ = ASSERT.LIST.is_empty_curried false list in *)
-
-    let list: int list = [] in
-    let _ = ASSERT.LIST.is_empty list in
-    let list: int list = [1;2;3;4] in
-    let _ = ASSERT.LIST.NOT.is_empty_ list in
+    let _ = ASSERT.LIST.to_have_size list 4n in
+    let _ = ASSERT.LIST.NOT.to_have_size list 5n in
+    // to_have_head
+    let _ = ASSERT.LIST.to_have_head list 1 in
+    let _ = ASSERT.LIST.NOT.to_have_head list 2 in
+    // to_have_value
+    let _ = ASSERT.LIST.to_have_value list 3 in
+    let _ = ASSERT.LIST.NOT.to_have_value list 5 in
 
     ()
