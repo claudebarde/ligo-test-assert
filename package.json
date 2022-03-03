@@ -1,0 +1,19 @@
+{
+  "name": "ligo-test-assert",
+  "version": "1.0.0",
+  "description": "Assertion library for the Ligo test framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon --exec ligo run test ./tests.mligo"
+  },
+  "keywords": [
+    "Tezos",
+    "Ligolang",
+    "test"
+  ],
+  "author": "Claude Barde",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
