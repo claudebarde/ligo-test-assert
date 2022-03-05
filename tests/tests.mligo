@@ -1,4 +1,4 @@
-#import "./assert_module/ligo_assert.mligo" "TEST"
+#import "../assert_module/ligo_assert.mligo" "TEST"
 module ASSERT = TEST.ASSERT
 module FORMAT = TEST.FORMAT
 
