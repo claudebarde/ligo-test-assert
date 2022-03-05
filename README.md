@@ -12,14 +12,14 @@ The ASSERT library is 100% written in Ligo, and uses Docker to compile the tests
 
 > To download the newest version or update your local version of Ligo
 
-`npm i`
+`git clone https://github.com/claudebarde/ligo-test-assert.git && cd ligo-test-assert && npm i`
 
 > The ASSERT library uses Nodemon to watch changes in your Ligo code
 
-Then create a `.mligo` file and write at the top:
+Then delete the content of the `tests` file in the `tests` directory but keep this at the top:
 
 ```
-#import "./assert_module/ligo_assert.mligo" "TEST"
+#import "../assert_module/ligo_assert.mligo" "TEST"
 module ASSERT = TEST.ASSERT
 ```
 
