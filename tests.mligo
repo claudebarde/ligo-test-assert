@@ -1,4 +1,4 @@
-#import "./ligo_assert.mligo" "TEST"
+#import "./assert_module/ligo_assert.mligo" "TEST"
 module ASSERT = TEST.ASSERT
 module FORMAT = TEST.FORMAT
 
@@ -10,63 +10,65 @@ let test =
     // is_equal
     let val_a = 2 in
     let val_b = 2 in
-    let _ = ASSERT.INT.is_equal val_a val_b in
-    // is_not_equal
+    let val_c = 3 in
+    let _ = ASSERT.INT.to_be_equal val_a val_b in
+    let _ = ASSERT.INT.NOT.to_be_equal val_a val_c in
+    // to_greater_than
     let val_a = 2 in
     let val_b = 3 in
-    let _ = ASSERT.INT.is_not_equal val_a val_b in
-    // is_greater_than
+    let _ = ASSERT.INT.to_be_greater_than val_b val_a in
+    let _ = ASSERT.INT.NOT.to_be_greater_than val_a val_b in
+    // to_be_less_than
     let val_a = 2 in
     let val_b = 3 in
-    let _ = ASSERT.INT.is_greater_than val_b val_a in
-    // is_less_than
-    let val_a = 2 in
-    let val_b = 3 in
-    let _ = ASSERT.INT.is_less_than val_a val_b in
+    let _ = ASSERT.INT.to_be_less_than val_a val_b in
+    let _ = ASSERT.INT.NOT.to_be_less_than val_b val_a in
     // is_greater_or_equal
     let val_a = 2 in
     let val_b = 3 in
-    let _ = ASSERT.INT.is_greater_or_equal val_b val_a in
+    let _ = ASSERT.INT.to_be_greater_or_equal val_b val_a in
+    let _ = ASSERT.INT.NOT.to_be_greater_or_equal val_a val_b in
     let val_a = 2 in
     let val_b = 2 in
-    let _ = ASSERT.INT.is_greater_or_equal val_b val_a in
+    let val_c = 4 in
+    let _ = ASSERT.INT.to_be_greater_or_equal val_b val_a in
+    let _ = ASSERT.INT.NOT.to_be_greater_or_equal val_a val_c in
     // is_less_or_equal
     let val_a = 2 in
     let val_b = 3 in
-    let _ = ASSERT.INT.is_less_or_equal val_a val_b in
+    let _ = ASSERT.INT.to_be_less_or_equal val_a val_b in
+    let _ = ASSERT.INT.NOT.to_be_less_or_equal val_b val_a in
     let val_a = 2 in
     let val_b = 2 in
-    let _ = ASSERT.INT.is_less_or_equal val_a val_b in
+    let _ = ASSERT.INT.to_be_less_or_equal val_a val_b in
     // is_greater_than_nat
     let val_a = 3 in
     let val_b = 2n in
-    let _ = ASSERT.INT.is_greater_than_nat val_a val_b in
+    let val_c = 1 in
+    let _ = ASSERT.INT.to_be_greater_than_nat val_a val_b in
+    let _ = ASSERT.INT.NOT.to_be_greater_than_nat val_c val_b in
     // is_less_than_nat
     let val_a = 2 in
     let val_b = 3n in
-    let _ = ASSERT.INT.is_less_than_nat val_a val_b in
+    let _ = ASSERT.INT.to_be_less_than_nat val_a val_b in
     // is_greater_or_equal_to_nat
     let val_a = 3 in
     let val_b = 2n in
-    let _ = ASSERT.INT.is_greater_or_equal_to_nat val_a val_b in
+    let _ = ASSERT.INT.to_be_greater_or_equal_to_nat val_a val_b in
     let val_a = 3 in
     let val_b = 3n in
-    let _ = ASSERT.INT.is_greater_or_equal_to_nat val_a val_b in
+    let _ = ASSERT.INT.to_be_greater_or_equal_to_nat val_a val_b in
     // is_less_or_equal
     let val_a = 2 in
     let val_b = 3n in
-    let _ = ASSERT.INT.is_less_or_equal_to_nat val_a val_b in
+    let _ = ASSERT.INT.to_be_less_or_equal_to_nat val_a val_b in
     let val_a = 2 in
     let val_b = 2n in
-    let _ = ASSERT.INT.is_less_or_equal_to_nat val_a val_b in
+    let _ = ASSERT.INT.to_be_less_or_equal_to_nat val_a val_b in
     // is_equal_to_nat
     let val_a = 2 in
     let val_b = 2n in
-    let _ = ASSERT.INT.is_equal_to_nat val_a val_b in
-    // is_not_equal_to_nat
-    let val_a = 2 in
-    let val_b = 3n in
-    let _ = ASSERT.INT.is_not_equal_to_nat val_a val_b in
+    let _ = ASSERT.INT.to_be_equal_to_nat val_a val_b in
     (*
         NAT MODULE TESTS
     *)
@@ -74,63 +76,73 @@ let test =
     // is_equal
     let val_a = 2n in
     let val_b = 2n in
-    let _ = ASSERT.NAT.is_equal val_a val_b in
-    // is_not_equal
-    let val_a = 2n in
-    let val_b = 3n in
-    let _ = ASSERT.NAT.is_not_equal val_a val_b in
+    let val_c = 3n in
+    let _ = ASSERT.NAT.to_be_equal val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_equal val_a val_c in
     // is_greater_than
     let val_a = 2n in
     let val_b = 3n in
-    let _ = ASSERT.NAT.is_greater_than val_b val_a in
+    let _ = ASSERT.NAT.to_be_greater_than val_b val_a in
+    let _ = ASSERT.NAT.NOT.to_be_greater_than val_a val_b in
     // is_less_than
     let val_a = 2n in
     let val_b = 3n in
-    let _ = ASSERT.NAT.is_less_than val_a val_b in
+    let _ = ASSERT.NAT.to_be_less_than val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_less_than val_b val_a in
     // is_greater_or_equal
     let val_a = 2n in
     let val_b = 3n in
-    let _ = ASSERT.NAT.is_greater_or_equal val_b val_a in
+    let _ = ASSERT.NAT.to_be_greater_or_equal val_b val_a in
+    let _ = ASSERT.NAT.NOT.to_be_greater_or_equal val_a val_b in
     let val_a = 2n in
     let val_b = 2n in
-    let _ = ASSERT.NAT.is_greater_or_equal val_b val_a in
+    let val_c = 1n in
+    let _ = ASSERT.NAT.to_be_greater_or_equal val_b val_a in
+    let _ = ASSERT.NAT.NOT.to_be_greater_or_equal val_c val_a in
     // is_less_or_equal
     let val_a = 2n in
     let val_b = 3n in
-    let _ = ASSERT.NAT.is_less_or_equal val_a val_b in
+    let _ = ASSERT.NAT.to_be_less_or_equal val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_less_or_equal val_b val_a in
     let val_a = 2n in
     let val_b = 2n in
-    let _ = ASSERT.NAT.is_less_or_equal val_a val_b in
+    let _ = ASSERT.NAT.to_be_less_or_equal val_a val_b in
     // is_greater_than_int
     let val_a = 3n in
     let val_b = 2 in
-    let _ = ASSERT.NAT.is_greater_than_int val_a val_b in
-    // is_less_than_nat
+    let val_c = 1n in
+    let _ = ASSERT.NAT.to_be_greater_than_int val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_greater_than_int val_c val_b in
+    // is_less_than_int
     let val_a = 2n in
     let val_b = 3 in
-    let _ = ASSERT.NAT.is_less_than_int val_a val_b in
+    let val_c = 4n in
+    let _ = ASSERT.NAT.to_be_less_than_int val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_less_than_int val_c val_b in
     // is_greater_or_equal_to_nat
     let val_a = 3n in
     let val_b = 2 in
-    let _ = ASSERT.NAT.is_greater_or_equal_to_int val_a val_b in
+    let val_c = 1n in
+    let _ = ASSERT.NAT.to_be_greater_or_equal_to_int val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_greater_or_equal_to_int val_c val_b in
     let val_a = 3n in
     let val_b = 3 in
-    let _ = ASSERT.NAT.is_greater_or_equal_to_int val_a val_b in
+    let _ = ASSERT.NAT.to_be_greater_or_equal_to_int val_a val_b in
     // is_less_or_equal
     let val_a = 2n in
     let val_b = 3 in
-    let _ = ASSERT.NAT.is_less_or_equal_to_int val_a val_b in
+    let val_c = 4n in
+    let _ = ASSERT.NAT.to_be_less_or_equal_to_int val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_less_or_equal_to_int val_c val_b in
     let val_a = 2n in
     let val_b = 2 in
-    let _ = ASSERT.NAT.is_less_or_equal_to_int val_a val_b in
+    let _ = ASSERT.NAT.to_be_less_or_equal_to_int val_a val_b in
     // is_equal_to_nat
     let val_a = 2n in
     let val_b = 2 in
-    let _ = ASSERT.NAT.is_equal_to_int val_a val_b in
-    // is_not_equal_to_nat
-    let val_a = 2n in
-    let val_b = 3 in
-    let _ = ASSERT.NAT.is_not_equal_to_int val_a val_b in
+    let val_c = 3n in
+    let _ = ASSERT.NAT.to_be_equal_to_int val_a val_b in
+    let _ = ASSERT.NAT.NOT.to_be_equal_to_int val_c val_b in
     (*
         LIST MODULE TESTS
     *)
