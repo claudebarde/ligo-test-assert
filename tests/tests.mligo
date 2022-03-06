@@ -231,11 +231,30 @@ let test =
     (*
         STRING MODULE TESTS
     *)
+    // to_be_equal
     let _ = FORMAT.add_title "STRING MODULE TESTS" in
     let string_a = "ligolang" in
     let string_b = "ligolang" in
     let string_c = "taquito" in
     let _ = ASSERT.STRING.to_be_equal string_a string_b in
     let _ = ASSERT.STRING.NOT.to_be_equal string_a string_c in
+    // to_have_length
+    let string_a = "ligolang" in
+    let _ = ASSERT.STRING.to_have_length string_a 8n in
+    let _ = ASSERT.STRING.NOT.to_have_length string_a 6n in
+    // to_have_same_length
+    let string_a = "ligolang" in
+    let string_b = "taquito" in
+    let string_c = "mountain" in
+    let _ = ASSERT.STRING.to_have_same_length string_a string_c in
+    let _ = ASSERT.STRING.NOT.to_have_same_length string_a string_b in
+    // to_have_sub
+    let string_a = "ligolang" in
+    let _ = ASSERT.STRING.to_have_sub string_a 0n 4n "ligo" in
+    let _ = ASSERT.STRING.NOT.to_have_sub string_a 0n 4n "lang" in
+    // to_include_sub
+    let string_a = "ligolang" in
+    let _ = ASSERT.STRING.to_include_sub string_a "go" in
+    let _ = ASSERT.STRING.NOT.to_include_sub string_a "zz" in
 
     ()
