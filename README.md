@@ -37,6 +37,7 @@ Currently:
 **MAP**: tests on `map` values  
 **BIG_MAP**: tests on `big_map` values  
 **ENTRYPOINT**: tests for contract entrypoints
+**CONTRACT**: tests for contracts
 
 Many tests can be negated by using the `NOT` module, for example:
 

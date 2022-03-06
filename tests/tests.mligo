@@ -144,6 +144,72 @@ let test =
     let _ = ASSERT.NAT.to_be_equal_to_int val_a val_b in
     let _ = ASSERT.NAT.NOT.to_be_equal_to_int val_c val_b in
     (*
+        MUTEZ MODULE TESTS
+    *)
+    let _ = FORMAT.add_title "MUTEZ MODULE TESTS" in
+    // is_equal
+    let val_a = 2tez in
+    let val_b = 2tez in
+    let val_c = 3tez in
+    let _ = ASSERT.MUTEZ.to_be_equal val_a val_b in
+    let _ = ASSERT.MUTEZ.NOT.to_be_equal val_a val_c in
+    // to_greater_than
+    let val_a = 2tez in
+    let val_b = 3tez in
+    let _ = ASSERT.MUTEZ.to_be_greater_than val_b val_a in
+    let _ = ASSERT.MUTEZ.NOT.to_be_greater_than val_a val_b in
+    // to_be_less_than
+    let val_a = 2tez in
+    let val_b = 3tez in
+    let _ = ASSERT.MUTEZ.to_be_less_than val_a val_b in
+    let _ = ASSERT.MUTEZ.NOT.to_be_less_than val_b val_a in
+    // is_greater_or_equal
+    let val_a = 2tez in
+    let val_b = 3tez in
+    let _ = ASSERT.MUTEZ.to_be_greater_or_equal val_b val_a in
+    let _ = ASSERT.MUTEZ.NOT.to_be_greater_or_equal val_a val_b in
+    let val_a = 2tez in
+    let val_b = 2tez in
+    let val_c = 4tez in
+    let _ = ASSERT.MUTEZ.to_be_greater_or_equal val_b val_a in
+    let _ = ASSERT.MUTEZ.NOT.to_be_greater_or_equal val_a val_c in
+    // is_less_or_equal
+    let val_a = 2tez in
+    let val_b = 3tez in
+    let _ = ASSERT.MUTEZ.to_be_less_or_equal val_a val_b in
+    let _ = ASSERT.MUTEZ.NOT.to_be_less_or_equal val_b val_a in
+    let val_a = 2tez in
+    let val_b = 2tez in
+    let _ = ASSERT.MUTEZ.to_be_less_or_equal val_a val_b in
+    // is_greater_than_nat
+    let val_a = 3_000_000mutez in
+    let val_b = 2_000_000n in
+    let val_c = 1_000_000mutez in
+    let _ = ASSERT.MUTEZ.to_be_greater_than_nat val_a val_b in
+    let _ = ASSERT.MUTEZ.NOT.to_be_greater_than_nat val_c val_b in
+    // is_less_than_nat
+    let val_a = 2_000_000mutez in
+    let val_b = 3_000_000n in
+    let _ = ASSERT.MUTEZ.to_be_less_than_nat val_a val_b in
+    // is_greater_or_equal_to_nat
+    let val_a = 3_000_000mutez in
+    let val_b = 2_000_000n in
+    let _ = ASSERT.MUTEZ.to_be_greater_or_equal_to_nat val_a val_b in
+    let val_a = 3_000_000mutez in
+    let val_b = 3_000_000n in
+    let _ = ASSERT.MUTEZ.to_be_greater_or_equal_to_nat val_a val_b in
+    // is_less_or_equal
+    let val_a = 2_000_000mutez in
+    let val_b = 3_000_000n in
+    let _ = ASSERT.MUTEZ.to_be_less_or_equal_to_nat val_a val_b in
+    let val_a = 2_000_000mutez in
+    let val_b = 2_000_000n in
+    let _ = ASSERT.MUTEZ.to_be_less_or_equal_to_nat val_a val_b in
+    // is_equal_to_nat
+    let val_a = 2_000_000mutez in
+    let val_b = 2_000_000n in
+    let _ = ASSERT.MUTEZ.to_be_equal_to_nat val_a val_b in
+    (*
         LIST MODULE TESTS
     *)
     let _ = FORMAT.add_title "LIST MODULE TESTS" in
