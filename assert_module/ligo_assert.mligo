@@ -7,6 +7,7 @@
 #import "./LIST.mligo" "LIST_MODULE"
 #import "./SET.mligo" "SET_MODULE"
 #import "./CONTRACT.mligo" "CONTRACT_MODULE"
+#import "./STRING.mligo" "STRING_MODULE"
 
 module ASSERT =
     struct
@@ -27,6 +28,8 @@ module ASSERT =
         module SET = SET_MODULE.SET
 
         module CONTRACT = CONTRACT_MODULE.CONTRACT
+
+        module STRING = STRING_MODULE.STRING
     end
 
 module FORMAT =

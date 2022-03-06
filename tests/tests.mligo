@@ -228,5 +228,14 @@ let test =
     // to_have_value
     let _ = ASSERT.LIST.to_have_value list 3 in
     let _ = ASSERT.LIST.NOT.to_have_value list 5 in
+    (*
+        STRING MODULE TESTS
+    *)
+    let _ = FORMAT.add_title "STRING MODULE TESTS" in
+    let string_a = "ligolang" in
+    let string_b = "ligolang" in
+    let string_c = "taquito" in
+    let _ = ASSERT.STRING.to_be_equal string_a string_b in
+    let _ = ASSERT.STRING.NOT.to_be_equal string_a string_c in
 
     ()
