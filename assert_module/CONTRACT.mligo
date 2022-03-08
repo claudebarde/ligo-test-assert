@@ -9,7 +9,7 @@ module CONTRACT =
             let storages_are_equal = 
                 Test.michelson_equal (Test.compile_value expected_storage) (Test.compile_value effective_storage) in
 
-            let (message, assert_result): string * bool =
+            (* let (message, assert_result): string * bool =
                 if storages_are_equal && should_be_equal
                 then ("contract has expected storage", true)
                 else if not storages_are_equal && not should_be_equal
@@ -19,21 +19,20 @@ module CONTRACT =
                 else if not storages_are_equal && should_be_equal
                 then ("storages are not equal", false)
                 else ("", false)
+            in *)
+
+
+            let (message, assert_result): string * bool =
+                match (storages_are_equal, should_be_equal) with
+                // should pass
+                | (True, True) -> ("contract has expected storage", true)
+                | (False, False) -> ("contract doesn't have expected storage", true)
+                // should fail
+                | (True, False) -> ("storages are equal", false)
+                | (False, True) -> ("storages are not equal", false)
             in
 
             let _ = Test.log (build_result_message assertion_name message assert_result) in assert assert_result
-
-            (* let (message, assert_result): string * bool =
-                match (storages_are_equal, should_be_equal) with
-                // should pass
-                | (true, true) -> ("+++ ASSERT.CONTRACT.to_have_storage => contract has expected storage", true)
-                | (false, false) -> ("+++ ASSERT.CONTRACT.to_have_storage => contract doesn't have expected storage", true)
-                // should fail
-                | (true, false) -> ("--- ASSERT.CONTRACT.to_have_storage => assertion failed (storages are equal)", false)
-                | (false, true) -> ("--- ASSERT.CONTRACT.to_have_storage => assertion failed (storages are not equal)", false)
-            in
-
-            let _ = Test.log message in assert assert_result *)
 
         let to_have_storage (type p s) (address: (p, s) typed_address) (expected_storage: s) =
             to_have_storage_curried true address expected_storage

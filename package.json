@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nodemon --exec ligo run test tests/tests.mligo",
+    "test:js": "nodemon --ext mligo --exec node index.mjs",
     "docker-update": "docker pull ligolang/ligo:next"
   },
   "keywords": [
@@ -16,5 +17,9 @@
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "zx": "^5.2.0"
   }
 }
