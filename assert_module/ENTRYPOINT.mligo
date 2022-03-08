@@ -2,7 +2,7 @@
 
 module ENTRYPOINT =
     struct            
-        let should_succeed (call: test_exec_result) (message: string option): unit =
+        let to_succeed (call: test_exec_result) (message: string option): unit =
             match call with
             | Success (_) -> 
                 begin
@@ -16,7 +16,7 @@ module ENTRYPOINT =
                 let _ = Test.log (error_message "ENTRYPOINT" "should_succeed") in
                 assert false
 
-        let should_fail (call: test_exec_result) (message: string option): unit =
+        let to_fail (call: test_exec_result) (message: string option): unit =
             match call with
             | Success (_) -> 
                 let _ = Test.log (error_message "ENTRYPOINT" "should_fail") in
@@ -30,7 +30,7 @@ module ENTRYPOINT =
                     assert true
                 end
 
-        let should_fail_with_message (call: test_exec_result) (expected_error_msg: string) (message: string option): unit =
+        let to_fail_with_message (call: test_exec_result) (expected_error_msg: string) (message: string option): unit =
             match call with
             | Fail (error) -> 
                 begin

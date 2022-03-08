@@ -44,20 +44,24 @@ stdOutput.split("\n").forEach(test => {
     testOutputs.push(testOutput);
   }
 });
-console.log("\n\n");
-console.log(
-  testOutputs
-    .map(output => {
-      if (output.type === "test") {
-        return `${output.pass ? chalk.green("PASS ") : chalk.red("FAIL ")} - ${
-          output.testName
-        } ${output.pass ? "" : "(" + chalk.red(output.message) + ")"}`;
-      } else if (output.type === "title") {
-        return chalk.blue("\n   " + output.title + "\n");
-      }
-    })
-    .join("\n")
-);
+if (testOutputs.length > 0) {
+  console.log("\n\n");
+  console.log(
+    testOutputs
+      .map(output => {
+        if (output.type === "test") {
+          return `${
+            output.pass ? chalk.green("PASS ") : chalk.red("FAIL ")
+          } - ${output.testName} ${
+            output.pass ? "" : "(" + chalk.red(output.message) + ")"
+          }`;
+        } else if (output.type === "title") {
+          return chalk.blue("\n   " + output.title + "\n");
+        }
+      })
+      .join("\n")
+  );
+}
 console.log("\r");
 if (testSuitePass) {
   console.log(chalk.green("Test suite passed"));

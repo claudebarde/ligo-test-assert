@@ -9,19 +9,6 @@ module CONTRACT =
             let storages_are_equal = 
                 Test.michelson_equal (Test.compile_value expected_storage) (Test.compile_value effective_storage) in
 
-            (* let (message, assert_result): string * bool =
-                if storages_are_equal && should_be_equal
-                then ("contract has expected storage", true)
-                else if not storages_are_equal && not should_be_equal
-                then ("contract doesn't have expected storage", true)
-                else if storages_are_equal && not should_be_equal
-                then ("storages are equal", false)
-                else if not storages_are_equal && should_be_equal
-                then ("storages are not equal", false)
-                else ("", false)
-            in *)
-
-
             let (message, assert_result): string * bool =
                 match (storages_are_equal, should_be_equal) with
                 // should pass

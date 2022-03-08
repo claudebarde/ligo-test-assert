@@ -59,8 +59,8 @@ module LIST =
 
         let to_have_head (type a) (list: a list) (expected_head: a): unit = to_have_head_curried true list expected_head
         // checks if a list contains the given value
-        let to_have_value_curried (type a) (should_have_val: bool) (list: a list) (val: a): unit =
-            let assertion_name = "ASSERT.LIST." ^ (if should_have_val then "" else "NOT.") ^ "to_have_value" in
+        let to_contain_curried (type a) (should_have_val: bool) (list: a list) (val: a): unit =
+            let assertion_name = "ASSERT.LIST." ^ (if should_have_val then "" else "NOT.") ^ "to_contain" in
 
             let fold (has_val, val_in_list: bool * a): bool = 
                 if compare_values val val_in_list
@@ -83,7 +83,7 @@ module LIST =
 
         let _ = Test.log (build_result_message assertion_name message assert_result) in assert assert_result
 
-        let to_have_value (type a) (list: a list) (val: a): unit = to_have_value_curried true list val
+        let to_contain (type a) (list: a list) (val: a): unit = to_contain_curried true list val
 
         module NOT =
             struct
@@ -93,6 +93,6 @@ module LIST =
 
                 let to_have_head (type a) (list: a list) (expected_head: a): unit = to_have_head_curried false list expected_head
 
-                let to_have_value (type a) (list: a list) (val: a): unit = to_have_value_curried false list val
+                let to_contain (type a) (list: a list) (val: a): unit = to_contain_curried false list val
             end           
     end

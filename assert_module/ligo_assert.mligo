@@ -8,6 +8,7 @@
 #import "./SET.mligo" "SET_MODULE"
 #import "./CONTRACT.mligo" "CONTRACT_MODULE"
 #import "./STRING.mligo" "STRING_MODULE"
+#import "./OPTION.mligo" "OPTION_MODULE"
 
 module ASSERT =
     struct
@@ -30,6 +31,8 @@ module ASSERT =
         module CONTRACT = CONTRACT_MODULE.CONTRACT
 
         module STRING = STRING_MODULE.STRING
+
+        module OPTION = OPTION_MODULE.OPTION
     end
 
 module FORMAT =

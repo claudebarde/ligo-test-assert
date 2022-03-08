@@ -225,14 +225,14 @@ let test =
     // to_have_head
     let _ = ASSERT.LIST.to_have_head list 1 in
     let _ = ASSERT.LIST.NOT.to_have_head list 2 in
-    // to_have_value
-    let _ = ASSERT.LIST.to_have_value list 3 in
-    let _ = ASSERT.LIST.NOT.to_have_value list 5 in
+    // to_contain
+    let _ = ASSERT.LIST.to_contain list 3 in
+    let _ = ASSERT.LIST.NOT.to_contain list 5 in
     (*
         STRING MODULE TESTS
     *)
-    // to_be_equal
     let _ = FORMAT.add_title "STRING MODULE TESTS" in
+    // to_be_equal
     let string_a = "ligolang" in
     let string_b = "ligolang" in
     let string_c = "taquito" in
@@ -256,5 +256,25 @@ let test =
     let string_a = "ligolang" in
     let _ = ASSERT.STRING.to_include_sub string_a "go" in
     let _ = ASSERT.STRING.NOT.to_include_sub string_a "zz" in
+    (*
+        OPTION MODULE TESTS
+    *)
+    let _ = FORMAT.add_title "OPTION MODULE TESTS" in
+    // to_be_none
+    let val_none = (None: string option) in
+    let val_some = Some "ligo" in
+    let _ = ASSERT.OPTION.to_be_none val_none in
+    let _ = ASSERT.OPTION.NOT.to_be_none val_some in
+    // to_be_some
+    let val_none = (None: string option) in
+    let val_some = Some "ligo" in
+    let _ = ASSERT.OPTION.to_be_some val_some in
+    let _ = ASSERT.OPTION.NOT.to_be_some val_none in
+    // to_be_some_value
+    let val_a = "ligo" in
+    let val_b = "taquito" in
+    let val_some = Some "ligo" in
+    let _ = ASSERT.OPTION.to_be_some_value val_some val_a in
+    let _ = ASSERT.OPTION.NOT.to_be_some_value val_some val_b in
 
     ()
