@@ -1,8 +1,10 @@
 #import "../assert_module/ligo_assert.mligo" "TEST"
 module ASSERT = TEST.ASSERT
 module FORMAT = TEST.FORMAT
+#include "./contract/main.mligo"
 
 let test =
+    let { alice_address; bob_address } = ASSERT.SETUP.init () in
     (*
         INT MODULE TESTS
     *)
@@ -276,5 +278,34 @@ let test =
     let val_some = Some "ligo" in
     let _ = ASSERT.OPTION.to_be_some_value val_some val_a in
     let _ = ASSERT.OPTION.NOT.to_be_some_value val_some val_b in
+    (*
+        ENTRYPOINT MODULE TESTS
+    *)
+    let _ = FORMAT.add_title "CONTRACT MODULE TESTS" in
+    let initial_storage = {
+        ledger              = Big_map.literal [ 
+                                ((alice_address, 0n), 1n);
+                                ((alice_address, 1n), 1n);
+                                ((alice_address, 2n), 1n);
+                                ((alice_address, 3n), 1n)
+                            ];
+        operators           = (Big_map.empty: (operator, unit) big_map);
+        metadata            = Big_map.literal [
+                                ("", Bytes.pack "This is a test")
+                            ];
+        token_metadata      = Big_map.literal [ 
+                                (0n, { token_id = 0n; token_info = Map.literal [ ("", Bytes.pack "Mock metadata for NFT 0") ]});
+                                (1n, { token_id = 1n; token_info = Map.literal [ ("", Bytes.pack "Mock metadata for NFT 1") ]});
+                                (2n, { token_id = 2n; token_info = Map.literal [ ("", Bytes.pack "Mock metadata for NFT 2") ]});
+                                (3n, { token_id = 3n; token_info = Map.literal [ ("", Bytes.pack "Mock metadata for NFT 3") ]})
+                            ];
+        total_supply        = 4n;
+        admin               = alice_address
+    } in
+    // originates the contract
+    let contract_balance = 5tez in
+    let nft_addr, _, _ = Test.originate main initial_storage contract_balance in
+    let _ = ASSERT.CONTRACT.to_have_storage nft_addr initial_storage in
+    let _ = ASSERT.CONTRACT.to_have_balance nft_addr contract_balance in
 
     ()

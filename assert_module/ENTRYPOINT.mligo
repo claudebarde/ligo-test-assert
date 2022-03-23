@@ -7,13 +7,13 @@ module ENTRYPOINT =
             | Success (_) -> 
                 begin
                     let _ = match message with
-                        | None -> Test.log (success_message "ENTRYPOINT" "should_succeed")
+                        | None -> Test.log (success_message "ENTRYPOINT" "to_succeed")
                         | Some msg -> Test.log ("+++ " ^ msg)
                     in
                     assert true
                 end
             | Fail (_) -> 
-                let _ = Test.log (error_message "ENTRYPOINT" "should_succeed") in
+                let _ = Test.log (error_message "ENTRYPOINT" "to_succeed") in
                 assert false
 
         let to_fail (call: test_exec_result) (message: string option): unit =

@@ -3,6 +3,23 @@ import chalk from "chalk";
 
 let stdOutput;
 let testSuitePass = false;
+let errorMessage = "";
+
+const parseErrorMsg = msg => {
+  // file + line + characters
+  const errorPosRegex = new RegExp(
+    'File "(.+)", line ([0-9]+), characters ([0-9-]+):'
+  );
+  const errorPosMatch = msg.match(errorPosRegex);
+  if (errorPosMatch) {
+    const [match, path, line, chars] = errorPosMatch;
+    return `In file "${path}, line ${line}, characters ${chars}": ${msg
+      .replace(/\n/g, "")
+      .replace(match, "")}`;
+  }
+
+  return msg;
+};
 
 const startTime = performance.now();
 try {
@@ -11,6 +28,7 @@ try {
   testSuitePass = true;
 } catch (error) {
   //console.error(error);
+  errorMessage = error.stderr;
   stdOutput = error.stdout;
 }
 const endTime = performance.now();
@@ -64,10 +82,13 @@ if (testOutputs.length > 0) {
 }
 console.log("\r");
 if (testSuitePass) {
-  console.log(chalk.green("Test suite passed"));
+  console.log(chalk.green.inverse("Test suite passed"));
   console.log("- Number of tests: ", testCount);
 } else {
-  console.log(chalk.red("Test suite failed"));
+  console.log(chalk.red.inverse("Test suite failed"));
+  if (errorMessage) {
+    console.log(chalk.red(parseErrorMsg(errorMessage)));
+  }
   console.log("- Number of passing tests before fail: ", testCount);
 }
 console.log(`- Tests executed in ${Math.round(endTime - startTime)} ms`);

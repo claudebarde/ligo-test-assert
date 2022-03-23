@@ -33,6 +33,16 @@ module ASSERT =
         module STRING = STRING_MODULE.STRING
 
         module OPTION = OPTION_MODULE.OPTION
+
+        module SETUP = 
+            struct
+                let init (p: unit): { alice_address: address; bob_address: address } =
+                    let _ = Test.reset_state 3n ([]: tez list) in
+                    { 
+                        alice_address = Test.nth_bootstrap_account 1; 
+                        bob_address = Test.nth_bootstrap_account 2 
+                    }
+            end
     end
 
 module FORMAT =

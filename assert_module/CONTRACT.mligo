@@ -54,6 +54,6 @@ module CONTRACT =
                     to_have_storage_curried false address expected_storage
 
                 let to_have_balance (type p s) (address: (p, s) typed_address) (expected_balance: tez) =
-                    to_have_balance_curried true address expected_balance
+                    to_have_balance_curried false address expected_balance
             end
     end

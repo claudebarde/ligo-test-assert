@@ -3,9 +3,9 @@
 module BIG_MAP =
     struct
         // checks if provided big_map has provided key
-        let has_key_curried 
+        let to_have_key_curried 
             (type k v) (should_have_key: bool) (key: k) (bigmap: ((k, v) big_map)) (bigmap_name: string): unit =
-            let assertion_name = "ASSERT.BIG_MAP." ^ (if should_have_key then "" else "NOT.") ^ "has_key" in
+            let assertion_name = "ASSERT.BIG_MAP." ^ (if should_have_key then "" else "NOT.") ^ "to_have_key" in
 
             let (message, assert_result): string * bool =
                 match (Big_map.find_opt key bigmap) with
@@ -21,8 +21,8 @@ module BIG_MAP =
 
             let _ = Test.log (build_result_message assertion_name message assert_result) in assert assert_result
 
-        let has_key (type k v) (key: k) (bigmap: ((k, v) big_map)) (bigmap_name: string) =
-            has_key_curried true key bigmap bigmap_name
+        let to_have_key (type k v) (key: k) (bigmap: ((k, v) big_map)) (bigmap_name: string) =
+            to_have_key_curried true key bigmap bigmap_name
         // checks if value in big_map at provided key is the expected value
         let value_equals_curried 
             (type k v) (should_be_equal: bool) (key: k) (expected_val: v) (bigmap: ((k, v) big_map)): unit =
@@ -51,8 +51,8 @@ module BIG_MAP =
 
         module NOT =
             struct
-                let has_key (type k v) (key: k) (bigmap: ((k, v) big_map)) (bigmap_name: string) =
-                    has_key_curried false key bigmap bigmap_name
+                let to_have_key (type k v) (key: k) (bigmap: ((k, v) big_map)) (bigmap_name: string) =
+                    to_have_key_curried false key bigmap bigmap_name
 
                 let value_equals (type k v) (key: k) (expected_val: v) (bigmap: ((k, v) big_map)) =
                     value_equals_curried false key expected_val bigmap
