@@ -306,6 +306,17 @@ let test =
     let contract_balance = 5tez in
     let nft_addr, _, _ = Test.originate main initial_storage contract_balance in
     let _ = ASSERT.CONTRACT.to_have_storage nft_addr initial_storage in
-    let _ = ASSERT.CONTRACT.to_have_balance nft_addr contract_balance in
+    //let _ = ASSERT.CONTRACT.to_have_balance nft_addr contract_balance in
+
+    (*
+        SET MODULE TESTS
+    *)
+    let _ = FORMAT.add_title "SET MODULE TESTS" in
+    let empty_set = (Set.empty: nat set) in
+    let nat_set = Set.literal [3n; 2n; 4n; 1n] in
+    let _ = ASSERT.SET.to_be_empty empty_set in
+    let _ = ASSERT.SET.NOT.to_be_empty nat_set in
+    let _ = ASSERT.SET.to_contain nat_set 4n in
+    let _ = ASSERT.SET.NOT.to_contain nat_set 5n in
 
     ()

@@ -81,7 +81,7 @@ module LIST =
                 else ("", false)
             in
 
-        let _ = Test.log (build_result_message assertion_name message assert_result) in assert assert_result
+            let _ = Test.log (build_result_message assertion_name message assert_result) in assert assert_result
 
         let to_contain (type a) (list: a list) (val: a): unit = to_contain_curried true list val
 

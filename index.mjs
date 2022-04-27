@@ -25,7 +25,7 @@ const findErrLocation = errMsg => {
 
 const startTime = performance.now();
 try {
-  const output = await $`ligo run test ./tests/ligo-tests/contract.test.mligo`;
+  const output = await $`ligo run test ./tests/tests.mligo`;
   stdOutput = output.stdout;
   testSuitePass = true;
 } catch (error) {
