@@ -318,5 +318,15 @@ let test =
     let _ = ASSERT.SET.NOT.to_be_empty nat_set in
     let _ = ASSERT.SET.to_contain nat_set 4n in
     let _ = ASSERT.SET.NOT.to_contain nat_set 5n in
+    (*
+        BOOL MODULE TESTS
+    *)
+    let _ = FORMAT.add_title "BOOL MODULE TESTS" in
+    let is_true = true in
+    let is_false = false in
+    let _ = ASSERT.BOOL.to_be_true is_true in
+    let _ = ASSERT.BOOL.NOT.to_be_true is_false in
+    let _ = ASSERT.BOOL.to_be_false is_false in
+    let _ = ASSERT.BOOL.NOT.to_be_false is_true in
 
     ()
