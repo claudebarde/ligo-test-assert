@@ -10,6 +10,7 @@
 #import "./STRING.mligo" "STRING_MODULE"
 #import "./OPTION.mligo" "OPTION_MODULE"
 #import "./BOOL.mligo" "BOOL_MODULE"
+#import "./ADDRESS.mligo" "ADDRESS_MODULE"
 
 module ASSERT =
     struct
@@ -36,6 +37,8 @@ module ASSERT =
         module OPTION = OPTION_MODULE.OPTION
 
         module BOOL = BOOL_MODULE.BOOL
+
+        module ADDRESS = ADDRESS_MODULE.ADDRESS
 
         module SETUP = 
             struct

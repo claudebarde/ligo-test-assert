@@ -328,5 +328,14 @@ let test =
     let _ = ASSERT.BOOL.NOT.to_be_true is_false in
     let _ = ASSERT.BOOL.to_be_false is_false in
     let _ = ASSERT.BOOL.NOT.to_be_false is_true in
+    (*
+        ADDRESS MODULE TESTS
+    *)
+    let _ = FORMAT.add_title "ADDRESS MODULE TESTS" in
+    let address_a = ("tz1Me1MGhK7taay748h4gPnX2cXvbgL6xsYL": address) in
+    let address_b = ("tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb": address) in
+    let address_c = ("tz1Me1MGhK7taay748h4gPnX2cXvbgL6xsYL": address) in
+    let _ = ASSERT.ADDRESS.to_be_equal address_a address_c in
+    let _ = ASSERT.ADDRESS.NOT.to_be_equal address_a address_b in
 
     ()
