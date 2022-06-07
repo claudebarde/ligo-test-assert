@@ -42,7 +42,7 @@ module ASSERT =
 
         module SETUP = 
             struct
-                let init (p: unit): { alice_address: address; bob_address: address } =
+                let init (_: unit): { alice_address: address; bob_address: address } =
                     let _ = Test.reset_state 3n ([]: tez list) in
                     { 
                         alice_address = Test.nth_bootstrap_account 1; 

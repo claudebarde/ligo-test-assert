@@ -12,7 +12,7 @@ module MAP =
                 let _ = Test.log ("--- Map is not empty") in
                 assert false
         // checks if provided map has provided key
-        let has_key (type k v) (key: k) (map: ((k, v) big_map)) (map_name: string) (expected: bool): unit =
+        let has_key (type k v) (key: k) (map: ((k, v) map)) (map_name: string) (expected: bool): unit =
             match (Map.find_opt key map) with
             | None -> 
                 let result = if expected = false then true else false in
@@ -23,7 +23,7 @@ module MAP =
                 else
                     let _ = Test.log ("--- ASSERT.MAP.has_key => '" ^ map_name ^ "' map doesn't have key") in
                     assert false
-            | Some (val) -> 
+            | Some (_) -> 
                 let result = if expected = false then false else true in
                 if result = true
                 then
@@ -34,7 +34,7 @@ module MAP =
                     assert false
         // checks if value in map at provided key is the expected value
         let value_equals (type k v) (key: k) (expected_val: v) (map: ((k, v) map)): bool =
-            match (Big_map.find_opt key map) with
+            match (Map.find_opt key map) with
             | None -> false
             | Some (val) -> if compare_values val expected_val then true else false
         // checks if the map is of the expected size

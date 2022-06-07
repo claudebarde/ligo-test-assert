@@ -5,6 +5,12 @@ let stdOutput;
 let stdErr;
 let testSuitePass = false;
 
+if (process.argv.length < 3) {
+  throw chalk.red(
+    "Error: missing argument to run the tests. Check if you specified the path to the file to test"
+  );
+}
+
 const findErrLocation = errMsg => {
   const simpleErrRegex =
     /"([a-zA-Z\/\.\-]+.test.mligo)", line ([0-9\-]+), characters ([0-9\-]+)/;
@@ -25,7 +31,7 @@ const findErrLocation = errMsg => {
 
 const startTime = performance.now();
 try {
-  const output = await $`ligo run test ./tests/tests.mligo`;
+  const output = await $`ligo run test ${process.argv[2]}`;
   stdOutput = output.stdout;
   testSuitePass = true;
 } catch (error) {

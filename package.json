@@ -4,8 +4,8 @@
   "description": "Assertion library for the Ligo test framework",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec ligo run test tests/tests.mligo",
-    "test:js": "nodemon --ext mligo --exec node index.mjs",
+    "assert": "nodemon --exec ligo run test",
+    "assert:js": "nodemon --ext mligo --exec node index.mjs",
     "docker-update": "docker pull ligolang/ligo:next"
   },
   "keywords": [

@@ -13,7 +13,7 @@ module BIG_MAP =
                     if should_have_key
                     then ("big_map " ^ bigmap_name ^ " doesn't have key", false)
                     else ("big_map " ^ bigmap_name ^ " doesn't have key", true)
-                | Some (val) -> 
+                | Some (_) -> 
                     if should_have_key
                     then ("big_map " ^ bigmap_name ^ " has key", true)
                     else ("big_map " ^ bigmap_name ^ " has key", false)

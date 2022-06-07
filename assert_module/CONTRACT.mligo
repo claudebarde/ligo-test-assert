@@ -32,15 +32,15 @@ module CONTRACT =
 
             let (message, assert_result): string * bool =
                 if balance = expected_balance && should_be_equal
-                then ("+++ ASSERT.CONTRACT.to_have_balance => contract has expected balance", true)
+                then ("+++ " ^ assertion_name ^ " => contract has expected balance", true)
                 else if balance <> expected_balance && not should_be_equal
-                then ("+++ ASSERT.CONTRACT.to_have_balance => contract doesn't have expected balance", true)
+                then ("+++ " ^ assertion_name ^ " => contract doesn't have expected balance", true)
                 else if balance = expected_balance && not should_be_equal
-                then ("--- ASSERT.CONTRACT.to_have_balance => assertion failed (balances are equal)", false)
+                then ("--- " ^ assertion_name ^ " => assertion failed (balances are equal)", false)
                 else if balance <> expected_balance && should_be_equal
-                then ("--- ASSERT.CONTRACT.to_have_balance => assertion failed (balances are not equal)", false)
+                then ("--- " ^ assertion_name ^ " => assertion failed (balances are not equal)", false)
                 else
-                    ("--- ASSERT.CONTRACT.to_have_balance => assertion failed", false)
+                    ("--- " ^ assertion_name ^ " => assertion failed", false)
             in
 
             let _ = Test.log message in assert assert_result
