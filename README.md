@@ -25,21 +25,29 @@ module ASSERT = TEST.ASSERT
 
 You're ready to go!
 
+You can now launch the tests:
+
+- You can run the `Test` framework directly without pretty-printing the output with `npm run assert -- path/to/test/file.mligo`
+- You can use the JavaScript file in the project to pretty-print the output: `npm run assert:js -- path/to/test/file.mligo`
+
 ### - ASSERT API
 
 The ASSERT library is made of submodules with names tied to what they do or what values they test.
 Currently:
 
-**INT**: tests on `int` values  
-**NAT**: tests on `nat` values  
-**LIST**: tests on `list` values  
-**SET**: tests on `set` values  
-**MAP**: tests on `map` values  
+**ADDRESS**: tests on `address` values  
+**BOOL**: tests on `bool` values  
 **BIG_MAP**: tests on `big_map` values  
-**ENTRYPOINT**: tests for contract entrypoints
-**CONTRACT**: tests for contracts
+**CONTRACT**: tests for contracts  
+**ENTRYPOINT**: tests for contract entrypoints  
+**INT**: tests on `int` values  
+**LIST**: tests on `list` values  
+**MAP**: tests on `map` values  
+**MUTEZ**: tests on `mutez` values  
+**NAT**: tests on `nat` values  
+**OPTION**: tests for options  
+**SET**: tests on `set` values  
 **STRING**: tests for strings
-**OPTION**: tests for options
 
 Many tests can be negated by using the `NOT` module, for example:
 
@@ -94,3 +102,19 @@ let _ =
 ```
 
 > passes if call to entrypoint succeeds
+
+### SETUP and FORMAT
+
+You can use the `SETUP` module to set up the testing environment:
+
+```
+let { alice_address; bob_address } = ASSERT.SETUP.init () in
+```
+
+This will return `alice_address` and `bob_address` that will not be the baker's address in order to avoid unexpected results during the tests.
+
+If you want to improve the readability of the test outputs, you can insert titles in your code using the `FORMAT` module:
+
+```
+let _ = FORMAT.add_title "FIRST TESTS" in
+```
