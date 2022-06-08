@@ -6,7 +6,7 @@ The ASSERT library makes it easier to run tests in Ligo (with the CameLigo synta
 
 ### - How to use
 
-The ASSERT library is 100% written in Ligo, and uses Docker to compile the tests.
+The ASSERT library is 100% written in Ligo, and uses the [Ligo Docker image](https://hub.docker.com/r/ligolang/ligo) to compile the tests.
 
 `npm run docker-update`
 
@@ -14,9 +14,9 @@ The ASSERT library is 100% written in Ligo, and uses Docker to compile the tests
 
 `git clone https://github.com/claudebarde/ligo-test-assert.git && cd ligo-test-assert && npm i`
 
-> The ASSERT library uses Nodemon to watch changes in your Ligo code
+> The ASSERT library uses **nodemon** to watch changes in your Ligo code as well as **zx** and **chalk** to display the test results.
 
-Then delete the content of the `tests` file in the `tests` directory but keep this at the top:
+Then delete the content of the `tests` file in the `tests` directory but keep this at the top of your main test file:
 
 ```
 #import "../assert_module/ligo_assert.mligo" "TEST"
@@ -45,9 +45,9 @@ Currently:
 **MAP**: tests on `map` values  
 **MUTEZ**: tests on `mutez` values  
 **NAT**: tests on `nat` values  
-**OPTION**: tests for options  
+**OPTION**: tests for `option` values  
 **SET**: tests on `set` values  
-**STRING**: tests for strings
+**STRING**: tests for `string` values
 
 Many tests can be negated by using the `NOT` module, for example:
 
