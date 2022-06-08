@@ -75,14 +75,16 @@ stdOutput.split("\n").forEach(test => {
     testOutputs.push(testOutput);
   }
   // failed tests
-  const regexFailedTest = new RegExp('"(\\-{3,}) (.*) failed"');
+  const regexFailedTest = new RegExp(
+    '"(-{3}) (.*) => assertion failed \\((.*)\\)"'
+  );
   const failMatch = test.match(regexFailedTest);
   if (failMatch) {
     const testOutput = {
       type: "test",
       pass: false,
       testName: failMatch[2],
-      message: "fail"
+      message: failMatch[3]
     };
     testOutputs.push(testOutput);
   }
